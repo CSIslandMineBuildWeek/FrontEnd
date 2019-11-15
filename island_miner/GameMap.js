@@ -9536,7 +9536,7 @@ const map = [
 
 let newMap = {};
 map.forEach((room) => {
-  let roomId = room.room_id
+  let roomId = parseInt(room.room_id)
   let coordinates = room.coordinates.split(',')
   xCoordinate = parseInt(coordinates[0].slice(-2))
   yCoordinate = parseInt(coordinates[1].slice(0,2))
