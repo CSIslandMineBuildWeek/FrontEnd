@@ -1,11 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, Route } from 'react';
 import './App.css';
 
+import MainSplash from './components/splashPage.js'
+
+
 function App() {
+
+  const[token, setToken] = useState("")
+
   return (
     <div className="App">
-      <h1>HI</h1>
+      <div>
+        {localStorage.getItem('token') ? <MainSplash/> :
+          <form>
+            <input
+              type="text"
+              name="name"
+              value={token}
+              onChange={ (event) => {
+                setToken(event.target.value)
+              }}/>
+            <button
+              onClick={ () => {
+                localStorage.setItem('token', token)
+              }}>Login
+            </button>
+          </form>
+        }
+      </div>
     </div>
   );
 }
