@@ -10,6 +10,19 @@ function App() {
 
   return (
     <div className="App">
+
+      <div className="navBar">
+        <section className="logo">#</section>
+        <section className="title">Lambda Treasure Hunt - Nav Bar Will go here</section>
+        <section className="navbar-links">#</section>
+      </div>
+      <div className="body-container">
+        <section className="body-container-map"></section>
+        <section className="body-container-room-info"></section>
+      </div>
+      <div className="footer">Explore</div>
+
+      {/*
       <div>
         {localStorage.getItem('token') ? <MainSplash/> :
           <form>
@@ -28,6 +41,9 @@ function App() {
           </form>
         }
       </div>
+      */
+     
+     }
     </div>
   );
 }
