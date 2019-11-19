@@ -1,6 +1,85 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import Konva from 'konva'
+// import { Stage, Layer,  Text } from 'react-konva'
+import { Stage, Layer, Rect, Circle, Text } from 'react-konva';
+
+let roomData = require('../roomData.json')
 
 export default function SplashPage() {
+
+
+    function logout(ev) {
+        localStorage.removeItem('token');
+        window.location = ('/');
+    }
+
+
+    const[rooms, setRooms] = useState([])
+    const[player, setPlayer] = useState({})
+    const[dots, setDots] = useState([])
+
+    useEffect(() => {
+        fetchRooms();
+        // playerData();
+    }, [])
+
+    useEffect(() => {
+        drawGrid()
+    }, [rooms,
+        //  player
+        ])
+
+    // function to get rooms
+    const fetchRooms = () => {
+        setRooms(roomData)
+    }
+
+    // const playerData = () => {
+    //     playerData('player information on state')
+    // }
+
+    const drawGrid = () => {
+        const dotsArr = []
+        const num = Math.sqrt(rooms.length)
+        const space = 500 / num;
+        let roomIndex = 0
+
+        for(let y =1;y<=num;y++) {
+            for(let x=1;x<=num;x++){
+                const lat = y * space
+                const lon = x * space
+                const bool = player.room_id === roomIndex + 1
+                const color = bool ? 'red': 'black';
+                const size = bool ? 8 : 4
+                dotsArr.push(
+                    <>
+                        <Circle
+                            x={lon}
+                            y ={lat}
+                            radius={size}
+                            fill={color}/>
+                        {rooms[roomIndex].e_to !== 0 &&
+                            <Rect
+                                x={lon -1}
+                                y ={lat-1}
+                                width={space}
+                                height={2}
+                                fill='black' />}
+                        {/* {rooms[roomIndex].e_to !== 0 &&
+                            <Rect
+                                x={lon -1}
+                                y ={lat-1}
+                                width={2}
+                                height={space}
+                                fill='black' />} */}
+                    </>
+                )
+                roomIndex++
+            }
+        }
+        setDots(dotsArr)
+    }
+
     return (
         <div>
             {/* top title nav */}
@@ -15,6 +94,11 @@ export default function SplashPage() {
                 {/* main map canvas most likely */}
                 <div>
                     {/* <h1>main map</h1> */}
+                    <Stage width={800} height={800}>
+                        <Layer>
+                            {dots}
+                        </Layer>
+                    </Stage>
                     <p>CurrentRoom_id</p>
                 </div>
 
