@@ -1,43 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 
-import {  Circle, Rect } from 'react-konva';
+import { Circle, Rect } from "react-konva";
 
-import  newMap from '../GameMap.js'
-// import './Dots.css'
-
-export default function Dots(props) {
-    let xCoordin = props['room'].roomInfo.coordinates[0]
-    let yCoordin = props['room'].roomInfo.coordinates[1]
-    // console.log(props)
-    let xValues = []
-    let yValues = []
-
-    for(let i=50;i<74;i++){
-        xValues.push(i)
+export default function Dots({
+  room,
+  width,
+  height,
+  xCoordin,
+  yCoordin,
+  roomId
+}) {
+  const x = (xCoordin * (width * 1.5)) / 74;
+  const y = (yCoordin * (height * 1.25)) / 75;
+  const offsetX = xCoordin + (width * 2) / 2 - 74;
+  const offsetY = yCoordin + (height * 1.5) / 2 - 75;
+  const [color, setColor] = useState("#515959");
+  const uniqueRooms = ["0", "1", "22", "55", "461", "467", "495", "499"];
+  useEffect(() => {
+    if (uniqueRooms.includes(roomId)) {
+      setColor("orange");
     }
-
-    for(let i=46;i<75;i++) {
-        yValues.push(i)
-    }
-
-    let newX = xCoordin + (xValues.indexOf(xCoordin) )
-    let newY = yCoordin + (yValues.indexOf(yCoordin) )
-
-    // xCoordin = xCoordin
-    // yCoordin + index * 2
-    return (
-        <>
-            <Circle
-                className="roomDot"
-                x={newX * 1000 / 73}
-                y={newY * 1000 / 74}
-  
-                offsetX={xCoordin + 400}
-                offsetY={yCoordin + 400}
-                radius={4}
-                fill={'black'}
-                drawBorder = {true}
-            />
-        </>
-        )
+  }, [roomId, uniqueRooms]);
+  return (
+    <>
+      <Circle
+        className="roomDot"
+        x={x}
+        y={y}
+        zIndex={100}
+        offsetX={offsetX}
+        offsetY={offsetY}
+        radius={3}
+        fill={color}
+        drawBorder={true}
+      />
+    </>
+  );
 }
