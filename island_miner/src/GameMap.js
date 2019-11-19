@@ -9538,8 +9538,8 @@ let newMap = {};
 map.forEach((room) => {
   let roomId = parseInt(room.room_id)
   let coordinates = room.coordinates.split(',')
-  xCoordinate = parseInt(coordinates[0].slice(-2))
-  yCoordinate = parseInt(coordinates[1].slice(0,2))
+  let xCoordinate = parseInt(coordinates[0].slice(-2))
+  let yCoordinate = parseInt(coordinates[1].slice(0,2))
   let roomInfo = {
     room_id: room.room_id,
     title: room.title,
@@ -9550,7 +9550,7 @@ map.forEach((room) => {
     items: room.items,
   }
   let roomExits = room.exits
-  item = {
+  let item = {
     roomInfo,
     roomExits
   }
@@ -9559,4 +9559,4 @@ map.forEach((room) => {
 
 console.log(newMap)
 
-module.exports =  { newMap }
+export default newMap
