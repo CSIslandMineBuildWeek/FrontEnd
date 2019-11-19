@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 
 import { Context } from "../context";
 
+import Cooldown from "./Cooldown";
+
 export default function Right() {
   const { state } = useContext(Context);
   const [players, setPlayers] = useState("There are no players in this room");
@@ -54,6 +56,7 @@ export default function Right() {
           {/* list of players inventory */}
         </div>
       </div>
+      <Cooldown />
     </div>
   );
 }
