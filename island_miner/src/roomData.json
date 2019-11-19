@@ -1,4 +1,4 @@
-const map = [
+[
   {
     "room_id": 0,
     "title": "A brightly lit room",
@@ -9532,31 +9532,3 @@ const map = [
     ]
   }
 ]
-
-
-let newMap = {};
-map.forEach((room) => {
-  let roomId = parseInt(room.room_id)
-  let coordinates = room.coordinates.split(',')
-  let xCoordinate = parseInt(coordinates[0].slice(-2))
-  let yCoordinate = parseInt(coordinates[1].slice(0,2))
-  let roomInfo = {
-    room_id: room.room_id,
-    title: room.title,
-    description: room.description,
-    coordinates: [xCoordinate, yCoordinate],
-    elevation: room.elevation,
-    terrain: room.terrain,
-    items: room.items,
-  }
-  let roomExits = room.exits
-  let item = {
-    roomInfo,
-    roomExits
-  }
-  newMap[roomId] = item
-})
-
-console.log(newMap)
-
-export default newMap
