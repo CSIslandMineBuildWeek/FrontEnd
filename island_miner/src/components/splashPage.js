@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Stage, Layer } from "react-konva";
+
+import { Context } from "../context";
 
 import newMap from "../GameMap.js";
 import Dots from "./Dots.js";
@@ -11,6 +13,8 @@ export default function SplashPage() {
     localStorage.removeItem("token");
     window.location = "/";
   };
+
+  const { state } = useContext(Context);
 
   const width = 1000;
   const height = 500;
@@ -71,6 +75,7 @@ export default function SplashPage() {
                     height={height}
                     xCoordin={newX}
                     yCoordin={newY}
+                    currentRoom={state.room_id === Number(room)}
                   />
                 );
               })}
