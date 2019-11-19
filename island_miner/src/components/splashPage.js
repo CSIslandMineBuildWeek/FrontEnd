@@ -2,6 +2,7 @@ import React from "react";
 
 import Map from "./Map";
 import Right from "./Right";
+import Bottom from "./Bottom";
 
 import "./CSS/Main.css";
 
@@ -25,18 +26,7 @@ export default function SplashPage() {
         <Map />
         <Right />
       </div>
-
-      <div>
-        <p>Explore</p>
-        <p>Nav Info + bonuses</p>
-        <p>N</p>
-        <p>S</p>
-        <p>W</p>
-        <p>E</p>
-        <p>Shop</p>
-        <p>Money</p>
-        <p>Sell</p>
-      </div>
+      <Bottom />
     </div>
   );
 }

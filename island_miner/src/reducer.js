@@ -20,7 +20,8 @@ export const reducer = (state = initialState, action) => {
     case "SET_TOKEN":
       return { ...state, token: payload };
     case "INIT":
-      //   console.log({ ...payload });
+      return { ...state, ...payload };
+    case "MOVE":
       return { ...state, ...payload };
     default:
       return state;
