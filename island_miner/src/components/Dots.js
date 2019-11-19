@@ -8,17 +8,32 @@ import  newMap from '../GameMap.js'
 export default function Dots(props) {
     let xCoordin = props['room'].roomInfo.coordinates[0]
     let yCoordin = props['room'].roomInfo.coordinates[1]
+    // console.log(props)
+    let xValues = []
+    let yValues = []
 
-    // xCoordin = xCoordin 
+    for(let i=50;i<74;i++){
+        xValues.push(i)
+    }
+
+    for(let i=46;i<75;i++) {
+        yValues.push(i)
+    }
+
+    let newX = xCoordin + (xValues.indexOf(xCoordin) )
+    let newY = yCoordin + (yValues.indexOf(yCoordin) )
+
+    // xCoordin = xCoordin
     // yCoordin + index * 2
     return (
         <>
             <Circle
                 className="roomDot"
-                x={xCoordin * 1000 / 73}
-                y={yCoordin * 1000 / 74}
-                offsetX={xCoordin +100 }
-                offsetY={yCoordin }
+                x={newX * 1000 / 73}
+                y={newY * 1000 / 74}
+  
+                offsetX={xCoordin + 400}
+                offsetY={yCoordin + 400}
                 radius={4}
                 fill={'black'}
                 drawBorder = {true}
