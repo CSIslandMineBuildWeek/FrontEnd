@@ -1,12 +1,13 @@
 import React from "react";
 import { Rect } from "react-konva";
 
-export default function Exits({
+export default function Exit({
   xCoordin,
   yCoordin,
   width,
   height,
-  roomExits
+  roomExits,
+  roomId
 }) {
   const x = (xCoordin * (width * 1.5)) / 74;
   const y = (yCoordin * (height * 1.25)) / 75;
@@ -21,7 +22,7 @@ export default function Exits({
           case "n":
             return (
               <Rect
-                key={direction}
+                key={direction + roomId}
                 x={x - 0.5}
                 y={y}
                 offsetX={offsetX}
@@ -34,7 +35,7 @@ export default function Exits({
           case "s":
             return (
               <Rect
-                key={direction}
+                key={direction + roomId}
                 x={x - 0.5}
                 y={y - lineHeight}
                 offsetX={offsetX}
@@ -47,7 +48,7 @@ export default function Exits({
           case "e":
             return (
               <Rect
-                key={direction}
+                key={direction + roomId}
                 x={x}
                 y={y}
                 offsetX={offsetX}
@@ -60,7 +61,7 @@ export default function Exits({
           case "w":
             return (
               <Rect
-                key={direction}
+                key={direction + roomId}
                 x={x - lineWidth}
                 y={y}
                 offsetX={offsetX}

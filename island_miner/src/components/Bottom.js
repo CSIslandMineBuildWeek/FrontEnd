@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Directions from "./Directions";
+import Messages from "./Messages";
 
 export default function Bottom() {
   return (
@@ -9,9 +10,7 @@ export default function Bottom() {
       <div>
         <p>Explore</p>
       </div>
-      <div>
-        <p>Nav Info + bonuses</p>
-      </div>
+      <Messages />
       <SideBar>
         <Directions />
         <p>Shop</p>

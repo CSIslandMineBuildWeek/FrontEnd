@@ -16,6 +16,7 @@ export default function Cooldown() {
       cdMs -= 1000;
       setProgress(cdMs);
     }, 1000);
+    return () => clearInterval(interval);
   }, [state.cooldown]);
 
   return <progress value={progress} max={max} />;

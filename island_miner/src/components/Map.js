@@ -27,16 +27,17 @@ export default function Map() {
   return (
     <StyledStage width={width} height={height}>
       <Layer>
-        {Object.keys(newMap).map(room => {
+        {Object.keys(newMap).map((room, idx) => {
           const [xCoordin, yCoordin] = newMap[room].roomInfo.coordinates;
           let newX = xCoordin + xValues.indexOf(xCoordin);
           let newY = yCoordin + yValues.indexOf(yCoordin);
           const { roomExits } = newMap[room];
           return (
             <Exits
-              key={room}
+              key={`${room} ${Date.now()}`}
               xCoordin={newX}
               yCoordin={newY}
+              roomId={room}
               width={width}
               height={height}
               roomExits={roomExits}

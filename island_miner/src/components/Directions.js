@@ -15,12 +15,12 @@ export default function Directions() {
     const { data } = await axios.post(
       "https://lambda-treasure-hunt.herokuapp.com/api/adv/move/",
       {
-        direction,
-        next_room_id: next_room_id.toString()
+        direction
+        // next_room_id: next_room_id.toString()
       },
       {
         headers: {
-          Authorization: state.token
+          Authorization: `Token ${state.token}`
         }
       }
     );
@@ -30,7 +30,7 @@ export default function Directions() {
     <DirContainer>
       {state.exits.map(exit => {
         return (
-          <p key={exit} onClick={move}>
+          <p key={exit + Date.now()} onClick={move}>
             {exit.toUpperCase()}
           </p>
         );
