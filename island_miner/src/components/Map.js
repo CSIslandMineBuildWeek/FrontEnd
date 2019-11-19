@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Stage, Layer } from "react-konva";
+import styled from "styled-components";
 
 import { Context } from "../context";
 
@@ -24,7 +25,7 @@ export default function Map() {
     yValues.push(i);
   }
   return (
-    <Stage width={width} height={height}>
+    <StyledStage width={width} height={height}>
       <Layer>
         {Object.keys(newMap).map(room => {
           const [xCoordin, yCoordin] = newMap[room].roomInfo.coordinates;
@@ -60,6 +61,10 @@ export default function Map() {
           );
         })}
       </Layer>
-    </Stage>
+    </StyledStage>
   );
 }
+
+const StyledStage = styled(Stage)`
+  transform: rotate(180deg) scaleX(-1);
+`;
