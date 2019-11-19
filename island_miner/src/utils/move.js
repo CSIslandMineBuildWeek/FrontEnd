@@ -34,13 +34,13 @@ async function moveTo(destId, token) {
   console.log("Made it");
 }
 
-async function getCurrentLocation() {
+async function getCurrentLocation(token) {
   try {
     const { data } = await axios(
       "https://lambda-treasure-hunt.herokuapp.com/api/adv/init/",
       {
         headers: {
-          Authorization: "Token feab19f3746332fe50e4c59ca4713affdfccce1c"
+          Authorization: `Token ${token}`
         }
       }
     );
