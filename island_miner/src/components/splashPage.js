@@ -28,6 +28,7 @@ export default function SplashPage() {
 
     useEffect(() => {
         drawGrid()
+        highest_values()
     }, [rooms,
         //  player
         ])
@@ -79,6 +80,35 @@ export default function SplashPage() {
         // }
         setDots(dotsArr)
     }
+
+    //this function is purely to find the lowest and highest X and Y values
+    const highest_values = () => {
+        let highestX = 0
+        let lowestX = 1000
+        let highestY = 0
+        let lowestY = 1000
+        {Object.keys(newMap).forEach((room)=> {
+            // console.log(newMap[room].roomInfo.coordinates)
+            if(newMap[room].roomInfo.coordinates[0] > highestX){
+                highestX = newMap[room].roomInfo.coordinates[0]
+            }
+            if(newMap[room].roomInfo.coordinates[1] > highestY) {
+                highestY = newMap[room].roomInfo.coordinates[1]
+            }
+
+            if(newMap[room].roomInfo.coordinates[0] < lowestX) {
+                lowestX = newMap[room].roomInfo.coordinates[0]
+            }
+
+            if(newMap[room].roomInfo.coordinates[1] < lowestY) {
+                lowestY = newMap[room].roomInfo.coordinates[1]
+            }
+        })}
+        // console.log(lowestX, highestX, lowestY, highestY)
+        //              50       73       46       74
+    }
+
+
 
     return (
         <div>
