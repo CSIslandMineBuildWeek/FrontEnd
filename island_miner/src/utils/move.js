@@ -7,7 +7,7 @@ const timeout = ms => {
 
 async function moveTo(destId, token) {
   let current = await getCurrentLocation();
-  cooldown = current.cooldown;
+  let cooldown = current.cooldown;
   await timeout(cooldown);
   const path = search(current.room_id, destId).filter(Boolean);
   await path.reduce(async (prom, cur) => {
@@ -44,7 +44,7 @@ async function getCurrentLocation(token) {
         }
       }
     );
-    cooldown = Number(data.cooldown) * 1000;
+    let cooldown = Number(data.cooldown) * 1000;
     await timeout(cooldown);
     return data;
   } catch (err) {
