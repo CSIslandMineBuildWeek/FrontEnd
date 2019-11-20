@@ -1,4 +1,4 @@
-export const map = [
+const map = [
   {
     room_id: 0,
     title: "A brightly lit room",
@@ -9990,7 +9990,5 @@ map.forEach(room => {
   };
   newMap[roomId] = item;
 });
-
-console.log(newMap);
 
 export default newMap;
