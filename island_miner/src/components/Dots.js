@@ -1,48 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { Circle } from "react-konva";
 
-import {  Circle, Rect } from 'react-konva';
+export default function Dots({
+  width,
+  height,
+  xCoordin,
+  yCoordin,
+  roomId,
+  currentRoom
+}) {
+  const [color, setColor] = useState("#515959");
+  const [radius, setRadius] = useState(3);
 
-import  newMap from '../GameMap.js'
-// import './Dots.css'
+  const uniqueRooms = ["0", "1", "22", "55", "461", "467", "495", "499"];
 
-export default function Dots(props) {
-    let xCoordin = props['room'].roomInfo.coordinates[0]
-    let yCoordin = props['room'].roomInfo.coordinates[1]
-
-    const num = Math.sqrt(props.length)
-    const space = 500 / num;
-    // console.log(props)
-    let xValues = []
-    let yValues = []
-
-    // these numbers are found using the highest_values function in splash page
-    for(let i=50;i<74;i++){
-        xValues.push(i)
+  useEffect(() => {
+    if (currentRoom) {
+      setColor("red");
+      setRadius(5);
+    } else if (uniqueRooms.includes(roomId)) {
+      setColor("orange");
+      setRadius(3);
+    } else {
+      setColor("#515959");
+      setRadius(3);
     }
+  }, [roomId, uniqueRooms, currentRoom]);
 
-    for(let i=46;i<75;i++) {
-        yValues.push(i)
-    }
-
-    let newX = xCoordin + (xValues.indexOf(xCoordin) )
-    let newY = yCoordin + (yValues.indexOf(yCoordin) )
-
-    // xCoordin = xCoordin
-    // yCoordin + index * 2
-
-    // console.log(props)
-    return (
-        <>
-            <Circle
-                className="roomDot"
-                x={newX * 1000 / 73}
-                y={newY * 1000 / 74}
-                offsetX={xCoordin + 400}
-                offsetY={yCoordin + 400}
-                radius={4}
-                fill={'black'}
-                drawBorder = {true}
-            />
-        </>
-        )
+  const x = (xCoordin * (width * 1.5)) / 74;
+  const y = (yCoordin * (height * 1.25)) / 75;
+  const offsetX = xCoordin + (width * 2) / 2 - 74;
+  const offsetY = yCoordin + (height * 1.5) / 2 - 75;
+  return (
+    <>
+      <Circle
+        className="roomDot"
+        x={x}
+        y={y}
+        offsetX={offsetX}
+        offsetY={offsetY}
+        radius={radius}
+        fill={color}
+        drawBorder={true}
+      />
+    </>
+  );
 }
