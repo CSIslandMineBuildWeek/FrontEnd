@@ -1,3 +1,5 @@
+import CPU from "./utils/cpu";
+
 export const initialState = {
   token: "",
   room_id: null,
@@ -27,6 +29,13 @@ export const reducer = (state = initialState, action) => {
       return { ...state, ...payload };
     case "SELL":
       return { ...state, ...payload };
+    case "WELL":
+      const cpu = new CPU();
+      cpu.load(payload.description);
+      cpu.run();
+      const message = cpu.getMessage();
+      console.log(message);
+      return { ...state, cooldown: payload.cooldown, messages: [message] };
     default:
       return state;
   }

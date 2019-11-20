@@ -50,6 +50,21 @@ export default function Right() {
     );
     dispatch({ type: "SELL", payload: data });
   };
+
+  const wish = async () => {
+    const { data } = await axios.post(
+      "https://lambda-treasure-hunt.herokuapp.com/api/adv/examine/",
+      {
+        name: "well"
+      },
+      {
+        headers: {
+          Authorization: `Token ${state.token}`
+        }
+      }
+    );
+    dispatch({ type: "WELL", payload: data });
+  };
   return (
     <div>
       <div className="top">
@@ -61,6 +76,9 @@ export default function Right() {
           <h4>{state.title}</h4>
           {state.title === "Shop" && (
             <button onClick={() => sell()}>Sell Item</button>
+          )}
+          {state.title === "Wishing Well" && (
+            <button onClick={() => wish()}>Examine Well</button>
           )}
           <p>{state.description}</p>
 
