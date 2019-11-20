@@ -44,40 +44,6 @@ export default function SplashPage() {
         const num = Math.sqrt(rooms.length)
         const space = 500 / num;
         let roomIndex = 0
-
-        // for(let y =1;y<=num;y++) {
-        //     for(let x=1;x<=num;x++){
-        //         const lat = y * space
-        //         const lon = x * space
-        //         const bool = player.room_id === roomIndex + 1
-        //         const color = bool ? 'red': 'black';
-        //         const size = bool ? 8 : 4
-        //         dotsArr.push(
-        //             <>
-        //                 <Circle
-        //                     x={lon}
-        //                     y ={lat}
-        //                     radius={size}
-        //                     fill={color}/>
-        //                 {rooms[roomIndex].e_to !== 0 &&
-        //                     <Rect
-        //                         x={lon -1}
-        //                         y ={lat-1}
-        //                         width={space}
-        //                         height={2}
-        //                         fill='black' />}
-        //                 {/* {rooms[roomIndex].e_to !== 0 &&
-        //                     <Rect
-        //                         x={lon -1}
-        //                         y ={lat-1}
-        //                         width={2}
-        //                         height={space}
-        //                         fill='black' />} */}
-        //             </>
-        //         )
-        //         roomIndex++
-        //     }
-        // }
         setDots(dotsArr)
     }
 
