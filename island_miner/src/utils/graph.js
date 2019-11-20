@@ -1,4 +1,4 @@
-import { map as data } from "../GameMap";
+import newMap from "../GameMap";
 
 class Graph {
   constructor() {

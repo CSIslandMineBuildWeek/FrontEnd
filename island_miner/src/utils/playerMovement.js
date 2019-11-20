@@ -20,7 +20,7 @@ function goToWishingWell(){
   let token = localStorage.getItem("token")
   moveTo(55, token)}
 
-export async function getCoinBalance(){
+async function getCoinBalance(){
   let token = localStorage.getItem("token")
   try{
     await axios(

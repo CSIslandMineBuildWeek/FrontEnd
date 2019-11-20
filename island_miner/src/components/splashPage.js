@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-import React from 'react'
-import GameButtons from './GameButtons';
-
-export default function SplashPage() {
-    return (
-        <div>
-            <GameButtons/>
-            <h1>Main SplashPage!!!</h1>
-        </div>
-    )
-=======
 import React from "react";
-
 import Map from "./Map";
 import Right from "./Right";
 import Bottom from "./Bottom";
@@ -41,5 +28,4 @@ export default function SplashPage() {
       <Bottom />
     </div>
   );
->>>>>>> master
 }
