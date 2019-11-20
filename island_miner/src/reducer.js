@@ -23,6 +23,8 @@ export const reducer = (state = initialState, action) => {
       return { ...state, ...payload };
     case "MOVE":
       return { ...state, ...payload };
+    case "PICKUP":
+      return { ...state, ...payload  }
     default:
       return state;
   }

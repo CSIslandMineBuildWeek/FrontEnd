@@ -1,5 +1,4 @@
 import React from "react";
-
 import Map from "./Map";
 import Right from "./Right";
 import Bottom from "./Bottom";
