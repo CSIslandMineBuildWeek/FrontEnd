@@ -1,4 +1,6 @@
 import React, { useState, Route } from 'react';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer'
 import './App.css';
 
 import MainSplash from './components/splashPage.js'
@@ -10,17 +12,12 @@ function App() {
 
   return (
     <div className="App">
-
-      <div className="navBar">
-        <section className="logo">#</section>
-        <section className="title">Lambda Treasure Hunt - Nav Bar Will go here</section>
-        <section className="navbar-links">#</section>
-      </div>
+      <Navbar />
       <div className="body-container">
         <section className="body-container-map"></section>
         <section className="body-container-room-info"></section>
       </div>
-      <div className="footer">Explore</div>
+      <Footer />
 
       {/*
       <div>
