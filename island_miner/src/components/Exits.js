@@ -1,5 +1,6 @@
 import React from "react";
 import { Rect } from "react-konva";
+import short from "short-uuid";
 
 export default function Exit({
   xCoordin,
@@ -22,7 +23,7 @@ export default function Exit({
           case "n":
             return (
               <Rect
-                key={direction + roomId}
+                key={short.generate()}
                 x={x - 0.5}
                 y={y}
                 offsetX={offsetX}
@@ -35,7 +36,7 @@ export default function Exit({
           case "s":
             return (
               <Rect
-                key={direction + roomId}
+                key={short.generate()}
                 x={x - 0.5}
                 y={y - lineHeight}
                 offsetX={offsetX}
@@ -48,7 +49,7 @@ export default function Exit({
           case "e":
             return (
               <Rect
-                key={direction + roomId}
+                key={short.generate()}
                 x={x}
                 y={y}
                 offsetX={offsetX}
@@ -61,7 +62,7 @@ export default function Exit({
           case "w":
             return (
               <Rect
-                key={direction + roomId}
+                key={short.generate()}
                 x={x - lineWidth}
                 y={y}
                 offsetX={offsetX}

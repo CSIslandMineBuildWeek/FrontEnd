@@ -8,15 +8,16 @@ import newMap from "../GameMap.js";
 export default function Directions() {
   const { state, dispatch } = useContext(Context);
   const move = async event => {
+    const dir = event.target.innerText.toLowerCase();
     const { roomExits } = newMap[state.room_id];
     const { direction, next_room_id } = roomExits.find(
-      exit => (exit.direction = event.target.innerText.toLowerCase())
+      room => room.direction === dir
     );
     const { data } = await axios.post(
       "https://lambda-treasure-hunt.herokuapp.com/api/adv/move/",
       {
-        direction
-        // next_room_id: next_room_id.toString()
+        direction,
+        next_room_id: next_room_id.toString()
       },
       {
         headers: {

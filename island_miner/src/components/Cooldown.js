@@ -6,8 +6,9 @@ export default function Cooldown() {
   const [progress, setProgress] = useState(0);
   const [max, setMax] = useState(1000);
   const { state } = useContext(Context);
-
+  const { cooldown } = state;
   useEffect(() => {
+    console.log(cooldown);
     let cdMs = state.cooldown * 1000;
     setProgress(cdMs);
     setMax(cdMs);
@@ -17,7 +18,7 @@ export default function Cooldown() {
       setProgress(cdMs);
     }, 1000);
     return () => clearInterval(interval);
-  }, [state.cooldown]);
+  }, [cooldown]);
 
   return <progress value={progress} max={max} />;
 }
