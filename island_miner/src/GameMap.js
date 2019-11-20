@@ -1,4 +1,4 @@
-const map = [
+export const map = [
   {
     room_id: 0,
     title: "A brightly lit room",
