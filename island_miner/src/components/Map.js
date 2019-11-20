@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Stage, Layer } from "react-konva";
 import styled from "styled-components";
 
@@ -7,9 +7,32 @@ import { Context } from "../context";
 import newMap from "../GameMap.js";
 import Dots from "./Dots.js";
 import Exits from "./Exits";
+import axios from "axios";
 
 export default function Map() {
-  const { state } = useContext(Context);
+
+  const { state, dispatch } = useContext(Context)
+  
+  const status = async getPlayerStatus => {
+    const { data } = await axios.post("https://lambda-treasure-hunt.herokuapp.com/api/adv/status/",
+      {
+        "name": getPlayerStatus
+      },
+      {
+        headers: {
+          Authorization: `Token ${state.token}`
+        }
+      }
+    );
+    dispatch({ type: "STATUS", payload: data });
+  }
+
+
+
+  status()
+  // console.log(state)
+
+  // const { state } = useContext(Context);
 
   const width = 1000;
   const height = 500;

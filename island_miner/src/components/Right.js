@@ -35,6 +35,7 @@ export default function Right() {
     console.log(data)
     dispatch({ type: "PICKUP", payload: data });
   }
+  console.log(state)
   return (
     <div>
       <div className="top">
@@ -61,17 +62,23 @@ export default function Right() {
       {/* <h3>Player Info</h3> */}
       <div className="bottom">
         <div>
-          <p>player name</p>
-          <p>current money</p>
+          <p>Name: {state.name}</p>
+          <p>Gold: {state.gold}</p>
         </div>
         <div>
-          <p>encumbrance:</p>
-          <p>strength:</p>
-          <p>speed:</p>
+          <p>Encumbrance: {state.encumbrance}</p>
+          <p>Strength: {state.strength}</p>
+          <p>Speed: {state.speed}</p>
         </div>
         <div>
           <h4>Inventory</h4>
           {/* list of players inventory */}
+           {state.inventory.length > 0 ? (
+            state.inventory.map((item) => <p>{item}</p>)
+          ) : (
+            <p>You have nothing</p>
+          )}
+
         </div>
       </div>
       <Cooldown />
