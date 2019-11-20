@@ -36,6 +36,10 @@ export const reducer = (state = initialState, action) => {
       const message = cpu.getMessage();
       console.log(message);
       return { ...state, cooldown: payload.cooldown, messages: [message] };
+    case "START_MINING":
+      return { ...state, cooldown: payload };
+    case "FINISH_MINING":
+      return { ...state, ...payload };
     default:
       return state;
   }
