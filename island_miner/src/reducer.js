@@ -24,7 +24,9 @@ export const reducer = (state = initialState, action) => {
     case "MOVE":
       return { ...state, ...payload };
     case "PICKUP":
-      return { ...state, ...payload  }
+      return { ...state, ...payload };
+    case "SELL":
+      return { ...state, ...payload };
     default:
       return state;
   }

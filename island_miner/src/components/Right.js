@@ -1,11 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 import { Context } from "../context";
 
 import Cooldown from "./Cooldown";
-
-
 
 export default function Right() {
   const { state, dispatch } = useContext(Context);
@@ -22,9 +20,10 @@ export default function Right() {
   }, [state.players]);
 
   const pickup = async itemToPick => {
-    const { data } = await axios.post("https://lambda-treasure-hunt.herokuapp.com/api/adv/take/",
+    const { data } = await axios.post(
+      "https://lambda-treasure-hunt.herokuapp.com/api/adv/take/",
       {
-        "name": itemToPick
+        name: itemToPick
       },
       {
         headers: {
@@ -32,9 +31,25 @@ export default function Right() {
         }
       }
     );
-    console.log(data)
+    console.log(data);
     dispatch({ type: "PICKUP", payload: data });
-  }
+  };
+
+  const sell = async () => {
+    const { data } = await axios.post(
+      "https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/",
+      {
+        name: "tiny treasure",
+        confirm: "yes"
+      },
+      {
+        headers: {
+          Authorization: `Token ${state.token}`
+        }
+      }
+    );
+    dispatch({ type: "SELL", payload: data });
+  };
   return (
     <div>
       <div className="top">
@@ -44,11 +59,19 @@ export default function Right() {
         </div>
         <div>
           <h4>{state.title}</h4>
+          {state.title === "Shop" && (
+            <button onClick={() => sell()}>Sell Item</button>
+          )}
           <p>{state.description}</p>
 
           <h4>Items</h4>
           {state.items.length > 0 ? (
-            state.items.map((item, idx) => <p key={idx}>{item}<button onClick={() => pickup(item)}>Pick up </button></p>)
+            state.items.map((item, idx) => (
+              <p key={idx}>
+                {item}
+                <button onClick={() => pickup(item)}>Pick up </button>
+              </p>
+            ))
           ) : (
             <p>There are no items in this room</p>
           )}
