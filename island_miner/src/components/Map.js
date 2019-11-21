@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Stage, Layer } from "react-konva";
 import styled from "styled-components";
 
@@ -7,17 +7,24 @@ import { Context } from "../context";
 import newMap from "../GameMap.js";
 import Dots from "./Dots.js";
 import Exits from "./Exits";
+import axios from "axios";
 // import axios from "axios";
 // import { TIMEOUT } from "dns";
 
 export default function Map() {
+
+  const timeout = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  };
+
+  // useEffect(() => {
+    // status()
+  // }, [])
+
   // const timeout = ms => {
   //   return new Promise(resolve => setTimeout(resolve, ms ))
   // }
   const { state, dispatch } = useContext(Context)
-
-
-  // const { state } = useContext(Context);
 
   const width = 1000;
   const height = 500;
