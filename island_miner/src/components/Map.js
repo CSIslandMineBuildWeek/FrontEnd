@@ -8,26 +8,48 @@ import newMap from "../GameMap.js";
 import Dots from "./Dots.js";
 import Exits from "./Exits";
 import axios from "axios";
+import { TIMEOUT } from "dns";
 
 export default function Map() {
-
+  const timeout = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms ))
+  }
   const { state, dispatch } = useContext(Context)
   
-  const status = async getPlayerStatus => {
-    const { data } = await axios.post("https://lambda-treasure-hunt.herokuapp.com/api/adv/status/",
-      {
-        "name": getPlayerStatus
-      },
-      {
-        headers: {
-          Authorization: `Token ${state.token}`
+  // const status = async getPlayerStatus => {
+  //   const { data } = await axios.post("https://lambda-treasure-hunt.herokuapp.com/api/adv/status/",
+  //     {
+  //       "name": getPlayerStatus
+  //     },
+  //     {
+  //       headers: {
+  //         Authorization: `Token ${state.token}`
+  //       }
+  //     }
+  //   );
+  //   cooldown = Number(data.cooldown) *1000;
+  //   await timeout(cooldown);
+  //   dispatch({ type: "STATUS", payload: data });
+  // }
+
+  async function status() {
+    try {
+      const { data } = await axios.post(
+        "https://lambda-treasure-hunt.herokuapp.com/api/adv/status/",
+        {
+          headers: {
+            Authorization: `Token ${state.token}`
+          }
         }
-      }
-    );
-    dispatch({ type: "STATUS", payload: data });
+      );
+      let cooldown = Number(data.cooldown) * 1000;
+      await timeout(cooldown)
+      dispatchEvent({type: "STATUS", payload: data})
+    }
+    catch( err) {
+      console.log('small error')
+    }
   }
-
-
 
   status()
   // console.log(state)
