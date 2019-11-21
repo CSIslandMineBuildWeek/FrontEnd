@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Stage, Layer } from "react-konva";
 import styled from "styled-components";
 
@@ -7,52 +7,15 @@ import { Context } from "../context";
 import newMap from "../GameMap.js";
 import Dots from "./Dots.js";
 import Exits from "./Exits";
-import axios from "axios";
-import { TIMEOUT } from "dns";
+// import axios from "axios";
+// import { TIMEOUT } from "dns";
 
 export default function Map() {
-  const timeout = ms => {
-    return new Promise(resolve => setTimeout(resolve, ms ))
-  }
-  const { state, dispatch } = useContext(Context)
-  
-  // const status = async getPlayerStatus => {
-  //   const { data } = await axios.post("https://lambda-treasure-hunt.herokuapp.com/api/adv/status/",
-  //     {
-  //       "name": getPlayerStatus
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: `Token ${state.token}`
-  //       }
-  //     }
-  //   );
-  //   cooldown = Number(data.cooldown) *1000;
-  //   await timeout(cooldown);
-  //   dispatch({ type: "STATUS", payload: data });
+  // const timeout = ms => {
+  //   return new Promise(resolve => setTimeout(resolve, ms ))
   // }
+  const { state, dispatch } = useContext(Context)
 
-  async function status() {
-    try {
-      const { data } = await axios.post(
-        "https://lambda-treasure-hunt.herokuapp.com/api/adv/status/",
-        {
-          headers: {
-            Authorization: `Token ${state.token}`
-          }
-        }
-      );
-      let cooldown = Number(data.cooldown) * 1000;
-      await timeout(cooldown)
-      dispatchEvent({type: "STATUS", payload: data})
-    }
-    catch( err) {
-      console.log('small error')
-    }
-  }
-
-  status()
-  // console.log(state)
 
   // const { state } = useContext(Context);
 
@@ -69,6 +32,7 @@ export default function Map() {
   for (let i = 46; i < 75; i++) {
     yValues.push(i);
   }
+  // console.log(state)
   return (
     <StyledStage width={width} height={height}>
       <Layer>

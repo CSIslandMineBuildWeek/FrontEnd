@@ -2,6 +2,8 @@ import React from "react";
 import Map from "./Map";
 import Right from "./Right";
 import Bottom from "./Bottom";
+import MoveTo from "./MoveTo";
+import MineButton from "./MineButton";
 
 import "./CSS/Main.css";
 
@@ -26,6 +28,8 @@ export default function SplashPage() {
         <Right />
       </div>
       <Bottom />
+      <MineButton />
+      <MoveTo />
     </div>
   );
 }

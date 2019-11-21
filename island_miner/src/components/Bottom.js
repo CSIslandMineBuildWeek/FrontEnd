@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext }from "react";
 import styled from "styled-components";
 
 import Directions from "./Directions";
 import Messages from "./Messages";
 
+import moveTo from '../utils/move.js'
+
+import { Context } from "../context";
+
 export default function Bottom() {
+  const { state } = useContext(Context)
+  // console.log(state.token)
   return (
     <Footer>
       <div>
@@ -13,7 +19,8 @@ export default function Bottom() {
       <Messages />
       <SideBar>
         <Directions />
-        <p>Shop</p>
+        {/* <p>Shop</p> */}
+        <button onClick={() => moveTo(1)}>Shop</button>
         <p>Money</p>
         <p>Sell</p>
       </SideBar>

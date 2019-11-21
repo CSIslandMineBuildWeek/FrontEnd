@@ -5,8 +5,9 @@ const timeout = ms => {
   return new Promise(resolve => setTimeout(resolve, ms));
 };
 
-async function moveTo(destId, token) {
-  let current = await getCurrentLocation();
+async function moveTo(destId) {
+  let playerToken = localStorage.getItem('token')
+  let current = await getCurrentLocation(playerToken);
   let cooldown = current.cooldown;
   await timeout(cooldown);
   const path = search(current.room_id, destId).filter(Boolean);
@@ -20,7 +21,7 @@ async function moveTo(destId, token) {
       },
       {
         headers: {
-          Authorization: `Token ${token}`
+          Authorization: `Token ${playerToken}`
         }
       }
     );
