@@ -1,12 +1,16 @@
 import axios from "axios";
 const search = require("./graph");
+// import search from "./graph"
 
 const timeout = ms => {
   return new Promise(resolve => setTimeout(resolve, ms));
 };
 
 async function moveTo(destId, token) {
+  // console.log(search)
+  // let playerToken = localStorage.getItem('token')
   let current = await getCurrentLocation();
+  // console.log(current)
   let cooldown = current.cooldown;
   await timeout(cooldown);
   const path = search(current.room_id, destId).filter(Boolean);

@@ -19,6 +19,22 @@ export default function Right() {
     }
   }, [state.players]);
 
+
+  const status = async () => {
+    const { data } = await axios.post(
+      "https://lambda-treasure-hunt.herokuapp.com/api/adv/status/", {},
+      {
+        headers: {
+          Authorization: `Token ${state.token}`
+        }
+      }
+    );
+    console.log(data)
+    dispatch({ type: "STATUS", payload: data });
+  };
+
+
+
   const pickup = async itemToPick => {
     const { data } = await axios.post(
       "https://lambda-treasure-hunt.herokuapp.com/api/adv/take/",
@@ -31,7 +47,7 @@ export default function Right() {
         }
       }
     );
-    console.log(data);
+    // console.log(data);
     dispatch({ type: "PICKUP", payload: data });
   };
 
@@ -102,17 +118,24 @@ export default function Right() {
       {/* <h3>Player Info</h3> */}
       <div className="bottom">
         <div>
-          <p>player name</p>
-          <p>current money</p>
+          <button onClick={() => status()}>GET YO STATUS</button>
+          <p>Name: {state.name}</p>
+          <p>Gold: {state.gold}</p>
         </div>
         <div>
-          <p>encumbrance:</p>
-          <p>strength:</p>
-          <p>speed:</p>
+          <p>Encumbrance: {state.encumbrance}</p>
+          <p>Strength: {state.strength}</p>
+          <p>Speed: {state.speed}</p>
         </div>
         <div>
           <h4>Inventory</h4>
           {/* list of players inventory */}
+           {state.inventory.length > 0 ? (
+            state.inventory.map((item) => <p>{item}</p>)
+          ) : (
+            <p>You have nothing</p>
+          )}
+
         </div>
       </div>
       <Cooldown />

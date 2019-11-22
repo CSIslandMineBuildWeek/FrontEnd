@@ -10,6 +10,7 @@ export const initialState = {
   errors: [],
   exits: [],
   items: [],
+  inventory: [],
   messages: [],
   players: [],
   terrain: "",
@@ -26,7 +27,9 @@ export const reducer = (state = initialState, action) => {
     case "MOVE":
       return { ...state, ...payload };
     case "PICKUP":
-      return { ...state, ...payload };
+      return { ...state, ...payload  }
+    case "STATUS":
+      return {...state, ...payload }
     case "SELL":
       return { ...state, ...payload };
     case "WELL":
