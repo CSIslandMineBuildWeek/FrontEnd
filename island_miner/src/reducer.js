@@ -32,6 +32,8 @@ export const reducer = (state = initialState, action) => {
       return {...state, ...payload }
     case "SELL":
       return { ...state, ...payload };
+    case "PRAY":
+      return { ...state, ...payload };
     case "WELL":
       const cpu = new CPU();
       cpu.load(payload.description);
