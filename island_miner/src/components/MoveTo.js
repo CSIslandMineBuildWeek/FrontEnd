@@ -79,11 +79,11 @@ export default function MoveTo() {
       <input type="number" value={input} onChange={handleChange} />
       <button onClick={move}>Move to Room</button>
       <button onClick={fly}>Fly to Room </button>
-      <div>
+      {/* <div>
         <p>1 - Shop</p>
         <p>55 - Wishing Well</p>
         <p>467 - Pirate Ry (To get name)</p>
-      </div>
+      </div> */}
     </>
   );
 }
