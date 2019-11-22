@@ -29,7 +29,6 @@ export default function Right() {
         }
       }
     );
-    console.log(data)
     dispatch({ type: "STATUS", payload: data });
   };
 
@@ -81,12 +80,30 @@ export default function Right() {
     );
     dispatch({ type: "WELL", payload: data });
   };
+
+  const pray = async () => {
+    const { data } = await axios.post(
+      "https://lambda-treasure-hunt.herokuapp.com/api/adv/pray/",
+      {},
+      {
+        headers:{
+          Authorization: `Token ${state.token}`
+        }
+      }
+    );
+    dispatch({ type: "PRAY", payload: data });
+  }
+
+  const linhShrine = state.coordinates === "(55,74)"
+  const hollowayShrine = state.coordinates === "(61,55)"
   return (
     <div>
       <div className="top">
         <div>
           <h4>ROOM {state.room_id}</h4>
           <p>{state.coordinates}</p>
+          {linhShrine? <button onClick={() => pray()}> Pray</button>: null}
+          {hollowayShrine ? <button onClick={() => pray()}> Pray</button>: null}
         </div>
         <div>
           <h4>{state.title}</h4>
