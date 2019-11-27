@@ -1,11 +1,16 @@
 import React, {useState} from 'react'
+import "./CSS/Main.css";
+
 
 export default function Login() {
     const[token, setToken] = useState("")
 
     return (
-        <form>
+      <div className="login-form-container">
+        <form className="login-form">
+          <p className="title">• ISLAND MINER •</p>
             <input
+              className="input-login"
               type="text"
               name="name"
               value={token}
@@ -17,6 +22,7 @@ export default function Login() {
                 localStorage.setItem('token', token)
               }}>Login
             </button>
-          </form>
+        </form>
+      </div>
     )
 }

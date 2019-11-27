@@ -1,4 +1,6 @@
 import React from "react";
+import Navbar from './Navbar';
+import Footer from './Footer';
 import Map from "./Map";
 import Right from "./Right";
 import Bottom from "./Bottom";
@@ -16,13 +18,7 @@ export default function SplashPage() {
   return (
     <div>
       {/* top title nav */}
-      <div>
-        <p>skull</p>
-        <h1>LAMBDA TREASURE HUNT</h1>
-        <button>Map</button>
-        <button>About</button>
-        <button onClick={logout}>Log Out</button>
-      </div>
+     <Navbar />
       <div className="main-section">
         <Map />
         <Right />
@@ -30,6 +26,7 @@ export default function SplashPage() {
       <Bottom />
       <MineButton />
       <MoveTo />
+      <Footer />
     </div>
   );
 }
