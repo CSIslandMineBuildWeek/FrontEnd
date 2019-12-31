@@ -4,7 +4,7 @@ import axios from "axios";
 import { Context } from "../context";
 
 import Cooldown from "./Cooldown";
-
+import './CSS/Right.css'
 export default function Right() {
   const { state, dispatch } = useContext(Context);
   const [players, setPlayers] = useState("There are no players in this room");
@@ -99,43 +99,53 @@ export default function Right() {
   return (
     <div>
       <div className="top">
+
         <div>
           <h4>ROOM {state.room_id}</h4>
           <p>{state.coordinates}</p>
           {linhShrine? <button onClick={() => pray()}> Pray</button>: null}
           {hollowayShrine ? <button onClick={() => pray()}> Pray</button>: null}
         </div>
-        <div>
-          <h4>{state.title}</h4>
-          {state.title === "Shop" && (
-            <button onClick={() => sell()}>Sell Item</button>
-          )}
-          {state.title === "Wishing Well" && (
-            <button onClick={() => wish()}>Examine Well</button>
-          )}
-          <p>{state.description}</p>
 
-          <h4>Items</h4>
-          {state.items.length > 0 ? (
-            state.items.map((item, idx) => (
-              <p key={idx}>
-                {item}
-                <button onClick={() => pickup(item)}>Pick up </button>
-              </p>
-            ))
-          ) : (
-            <p>There are no items in this room</p>
-          )}
 
-          <h4>Players</h4>
-          {players}
-        </div>
+          <div className="descDiv">
+            <h4>{state.title}</h4>
+            {state.title === "Shop" && (
+              <button onClick={() => sell()}>Sell Item</button>
+              )}
+            {state.title === "Wishing Well" && (
+              <button onClick={() => wish()}>Examine Well</button>
+              )}
+            <p className="description">{state.description}</p>
+          </div>
+
+        {/* <div className="top_bottomPortion"> */}
+            <div className="item_div">
+              <h4>Items</h4>
+              {state.items.length > 0 ? (
+                state.items.map((item, idx) => (
+                  <p key={idx}>
+                    {item}
+                    <button onClick={() => pickup(item)}>Pick up </button>
+                  </p>
+                ))
+                ) : (
+                  <p>There are no items in this room</p>
+                  )}
+            </div>
+            <div>
+              <h4>Players</h4>
+              <div className="players">
+                {players}
+              </div>
+            </div>
+        {/* </div> */}
       </div>
 
       {/* <h3>Player Info</h3> */}
       <div className="bottom">
+          <button className="statusButton"onClick={() => status()}>GET YO STATUS</button>
         <div>
-          <button onClick={() => status()}>GET YO STATUS</button>
           <p>Name: {state.name}</p>
           <p>Gold: {state.gold}</p>
         </div>
@@ -152,9 +162,9 @@ export default function Right() {
           ) : (
             <p>You have nothing</p>
           )}
-
         </div>
       </div>
+      <p>Cooldown</p>
       <Cooldown />
     </div>
   );
